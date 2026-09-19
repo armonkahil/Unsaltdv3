@@ -1,6 +1,28 @@
 const navToggle = document.querySelector('.nav-toggle');
 const mainNav = document.querySelector('.main-nav');
 const contactForm = document.querySelector('.contact-form');
+const themeToggle = document.querySelector('.theme-toggle');
+
+const updateThemeToggle = () => {
+  if (!themeToggle) {
+    return;
+  }
+
+  const isLight = document.documentElement.dataset.theme === 'light';
+  themeToggle.setAttribute('aria-pressed', String(isLight));
+  themeToggle.setAttribute('aria-label', isLight ? 'Switch to dark mode' : 'Switch to light mode');
+};
+
+updateThemeToggle();
+
+if (themeToggle) {
+  themeToggle.addEventListener('click', () => {
+    const nextTheme = document.documentElement.dataset.theme === 'light' ? 'dark' : 'light';
+    document.documentElement.dataset.theme = nextTheme;
+    localStorage.setItem('unsaltd-theme', nextTheme);
+    updateThemeToggle();
+  });
+}
 
 if (navToggle && mainNav) {
   navToggle.addEventListener('click', () => {
