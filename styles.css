@@ -338,7 +338,8 @@ p { margin: 0 0 1rem; }
 
 .hero-card img {
   width: 100%;
-  height: 600px;
+  height: auto;
+  aspect-ratio: 660 / 498;
   object-fit: cover;
   border-radius: 20px;
 }
@@ -347,10 +348,13 @@ p { margin: 0 0 1rem; }
   position: absolute;
   right: 32px;
   bottom: 30px;
-  background: rgba(255, 250, 244, 0.9);
-  border-radius: 18px;
-  padding: 18px 20px;
-  box-shadow: var(--shadow);
+  background: rgba(25, 37, 33, 0.84);
+  border-left: 3px solid var(--legacy-coral);
+  border-radius: 0;
+  padding: 14px 16px;
+  color: var(--paper);
+  box-shadow: 0 12px 26px rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(5px);
   max-width: 220px;
 }
 
@@ -359,6 +363,15 @@ p { margin: 0 0 1rem; }
   margin-bottom: 6px;
   font-size: 1.3rem;
   font-family: var(--display);
+}
+
+.hero-badge span {
+  display: block;
+  color: rgba(245, 240, 230, 0.72);
+  font-size: 0.68rem;
+  line-height: 1.45;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
 }
 
 .section {
@@ -564,6 +577,10 @@ p { margin: 0 0 1rem; }
 
 .callout h2,
 .callout p { color: inherit; }
+
+.callout .callout-eyebrow {
+  color: rgba(255, 255, 255, 0.7);
+}
 
 .callout-actions {
   display: flex;
@@ -778,6 +795,17 @@ textarea {
   resize: vertical;
 }
 
+.form-actions {
+  margin-top: 22px;
+}
+
+.form-status {
+  min-height: 1.5em;
+  margin: 14px 0 0;
+  color: var(--muted);
+  font-size: 0.8rem;
+}
+
 .form-grid .full {
   grid-column: 1 / -1;
 }
@@ -893,6 +921,122 @@ textarea {
   .section { padding: 52px 0; }
   .section-header { align-items: flex-start; flex-direction: column; }
 
-  .hero-card img { height: 440px; }
+  .hero-card img { height: auto; }
   .callout-actions { justify-content: flex-start; }
+}
+
+/* The interior pages continue the cinematic under-construction composition. */
+body:has(.site-background) {
+  position: relative;
+  background: var(--legacy-ink);
+}
+
+.site-background {
+  position: fixed;
+  inset: 0;
+  z-index: -2;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: saturate(0.78) contrast(1.04) brightness(0.48);
+}
+
+body:has(.site-background)::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background: linear-gradient(180deg, rgba(25, 37, 33, 0.72), rgba(25, 37, 33, 0.9)), rgba(25, 37, 33, 0.3);
+}
+
+body:has(.site-background) .site-header {
+  background: rgba(25, 37, 33, 0.3);
+  border-bottom-color: rgba(245, 240, 230, 0.2);
+  backdrop-filter: blur(4px);
+}
+
+body:has(.site-background) main {
+  position: relative;
+}
+
+body:has(.site-background) .page-banner {
+  min-height: 62vh;
+  padding: clamp(72px, 12vh, 140px) 0 70px;
+  display: flex;
+  align-items: center;
+}
+
+body:has(.site-background) .page-banner .container {
+  align-items: center;
+}
+
+body:has(.site-background) .page-banner h1 {
+  max-width: 760px;
+  font-family: var(--script);
+  font-size: clamp(3.4rem, 7vw, 6.7rem);
+  font-weight: 400;
+  letter-spacing: 0.01em;
+  text-shadow: 2px 2px 9px rgba(0, 0, 0, 0.3);
+}
+
+body:has(.site-background) .page-banner h1 em {
+  color: var(--legacy-coral);
+  font-style: normal;
+}
+
+body:has(.site-background) .page-banner > .container > div:first-child > p {
+  max-width: 430px;
+  font-family: var(--display);
+  font-size: 1.1rem;
+  color: rgba(245, 240, 230, 0.88);
+}
+
+body:has(.site-background) .page-banner .panel {
+  background: rgba(25, 37, 33, 0.2);
+  border: 1px solid rgba(245, 240, 230, 0.24);
+  border-radius: 3px;
+  padding: 10px;
+  transform: rotate(1.5deg);
+}
+
+body:has(.site-background) .page-banner .panel img {
+  min-height: 360px;
+  border-radius: 0;
+  filter: saturate(0.82);
+}
+
+body:has(.site-background) .section {
+  background: rgba(18, 29, 26, 0.6);
+  border-top: 1px solid rgba(245, 240, 230, 0.12);
+}
+
+body:has(.site-background) .feature-card,
+body:has(.site-background) .resource-card,
+body:has(.site-background) .service-card,
+body:has(.site-background) .product-card,
+body:has(.site-background) .blog-card,
+body:has(.site-background) .contact-panel,
+body:has(.site-background) .recipe-card,
+body:has(.site-background) .value-pill {
+  background: rgba(245, 240, 230, 0.045);
+  border-color: rgba(245, 240, 230, 0.2);
+  border-radius: 3px;
+  box-shadow: none;
+}
+
+body:has(.site-background) .recipe-card .image-wrap,
+body:has(.site-background) .about-photo,
+body:has(.site-background) .story-image {
+  border-radius: 0;
+}
+
+body:has(.site-background) .site-footer {
+  background: rgba(18, 29, 26, 0.78);
+}
+
+@media (max-width: 900px) {
+  body:has(.site-background) .main-nav {
+    background: rgba(25, 37, 33, 0.96);
+  }
 }
