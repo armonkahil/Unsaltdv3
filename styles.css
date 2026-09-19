@@ -29,12 +29,26 @@
   --legacy-ink: #192521;
 }
 
+:root[data-theme="light"] {
+  --bg: #f5f0e6;
+  --bg-strong: #e9ded0;
+  --panel: rgba(25, 37, 33, 0.06);
+  --panel-2: rgba(25, 37, 33, 0.1);
+  --paper: #192521;
+  --paper-strong: #101a18;
+  --ink: #192521;
+  --ink-soft: #4f5d56;
+  --muted: rgba(25, 37, 33, 0.68);
+  --line: rgba(25, 37, 33, 0.16);
+  --shadow: 0 20px 48px rgba(25, 37, 33, 0.16);
+}
+
 * { box-sizing: border-box; }
 html { scroll-behavior: smooth; }
 body {
   margin: 0;
   color: var(--paper);
-  background: linear-gradient(180deg, #101a18 0%, #152620 100%);
+  background: linear-gradient(180deg, var(--bg) 0%, var(--bg-strong) 100%);
   font-family: var(--mono);
   line-height: 1.6;
 }
@@ -80,7 +94,7 @@ p { margin: 0 0 1rem; }
   top: 0;
   z-index: 30;
   backdrop-filter: blur(10px);
-  background: rgba(18, 29, 26, 0.86);
+  background: color-mix(in srgb, var(--bg) 86%, transparent);
   border-bottom: 1px solid var(--line);
 }
 
@@ -191,6 +205,34 @@ p { margin: 0 0 1rem; }
   text-transform: uppercase;
 }
 
+.theme-toggle {
+  display: inline-grid;
+  place-items: center;
+  width: 42px;
+  height: 42px;
+  padding: 0;
+  color: var(--paper);
+  background: transparent;
+  border: 1px solid var(--line);
+  border-radius: 50%;
+  cursor: pointer;
+  transition: transform 0.2s ease, background 0.2s ease;
+}
+
+.theme-toggle:hover,
+.theme-toggle:focus-visible {
+  background: var(--panel-2);
+  transform: translateY(-2px);
+}
+
+.theme-toggle-icon {
+  font-size: 1.15rem;
+  line-height: 1;
+}
+
+:root[data-theme="light"] .theme-toggle-icon::before { content: "☾"; }
+:root:not([data-theme="light"]) .theme-toggle-icon::before { content: "☼"; }
+
 .hero {
   position: relative;
   padding: 70px 0 50px;
@@ -213,6 +255,14 @@ p { margin: 0 0 1rem; }
   inset: 0;
   background: linear-gradient(90deg, rgba(18, 29, 26, 0.9) 0%, rgba(18, 29, 26, 0.42) 35%, rgba(18, 29, 26, 0.8) 100%);
   z-index: 1;
+}
+
+:root[data-theme="light"] .hero-video-overlay {
+  background: linear-gradient(90deg, rgba(245, 240, 230, 0.78) 0%, rgba(245, 240, 230, 0.38) 35%, rgba(245, 240, 230, 0.68) 100%);
+}
+
+:root[data-theme="light"] .hero-video {
+  filter: saturate(0.8) contrast(1.02) brightness(0.76);
 }
 
 .hero-grid {
@@ -292,48 +342,6 @@ p { margin: 0 0 1rem; }
   border-radius: 28px;
   box-shadow: var(--shadow);
   overflow: hidden;
-}
-
-.hero-card-crest {
-  position: absolute;
-  top: 18px;
-  right: 18px;
-  z-index: 2;
-  width: 112px;
-  height: 112px;
-  border-radius: 18px;
-  background: rgba(13, 18, 17, 0.48);
-  border: 1px solid rgba(255, 255, 255, 0.18);
-  backdrop-filter: blur(6px);
-  display: grid;
-  place-items: center;
-  box-shadow: 0 12px 26px rgba(0, 0, 0, 0.16);
-}
-
-.hero-card-crest img {
-  width: 86px;
-  height: 86px;
-  object-fit: contain;
-  filter: drop-shadow(0 12px 18px rgba(0, 0, 0, 0.22));
-}
-
-.brand-mark {
-  position: relative;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 54px;
-  height: 54px;
-  border-radius: 12px;
-  background: rgba(255, 255, 255, 0.04);
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  box-shadow: inset 0 0 0 1px rgba(228, 122, 86, 0.12);
-}
-
-.brand-mark img {
-  width: 44px;
-  height: 44px;
-  object-fit: contain;
 }
 
 .hero-card img {
@@ -950,10 +958,34 @@ body:has(.site-background)::before {
   background: linear-gradient(180deg, rgba(25, 37, 33, 0.72), rgba(25, 37, 33, 0.9)), rgba(25, 37, 33, 0.3);
 }
 
+:root[data-theme="light"] body:has(.site-background)::before {
+  background: linear-gradient(180deg, rgba(245, 240, 230, 0.62), rgba(245, 240, 230, 0.78)), rgba(245, 240, 230, 0.2);
+}
+
 body:has(.site-background) .site-header {
   background: rgba(25, 37, 33, 0.3);
   border-bottom-color: rgba(245, 240, 230, 0.2);
   backdrop-filter: blur(4px);
+}
+
+:root[data-theme="light"] body:has(.site-background) .site-header {
+  background: rgba(245, 240, 230, 0.42);
+}
+
+:root[data-theme="light"] body:has(.site-background) .section {
+  background: rgba(245, 240, 230, 0.64);
+}
+
+:root[data-theme="light"] body:has(.site-background) .feature-card,
+:root[data-theme="light"] body:has(.site-background) .resource-card,
+:root[data-theme="light"] body:has(.site-background) .service-card,
+:root[data-theme="light"] body:has(.site-background) .product-card,
+:root[data-theme="light"] body:has(.site-background) .blog-card,
+:root[data-theme="light"] body:has(.site-background) .contact-panel,
+:root[data-theme="light"] body:has(.site-background) .recipe-card,
+:root[data-theme="light"] body:has(.site-background) .value-pill {
+  background: rgba(245, 240, 230, 0.72);
+  border-color: rgba(25, 37, 33, 0.16);
 }
 
 body:has(.site-background) main {
@@ -1038,5 +1070,17 @@ body:has(.site-background) .site-footer {
 @media (max-width: 900px) {
   body:has(.site-background) .main-nav {
     background: rgba(25, 37, 33, 0.96);
+  }
+
+  :root[data-theme="light"] body:has(.site-background) .main-nav {
+    background: rgba(245, 240, 230, 0.96);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
   }
 }
