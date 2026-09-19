@@ -4,6 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="Explore private dining, meal prep, workshops, and culinary partnerships from The UNSALT'D Life.">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; script-src-attr 'none'; img-src 'self' data:; style-src 'self' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; media-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests">
   <title>Services | The UNSALT'D Life</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -11,9 +12,16 @@
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+  <video class="site-background" autoplay muted loop playsinline aria-hidden="true">
+    <source src="assets/video/sunset_4.mp4" type="video/mp4">
+    <source src="assets/video/sunset_4.webm" type="video/webm">
+  </video>
   <header class="site-header">
     <div class="container header-inner">
       <div class="brand-block">
+        <div class="brand-mark" aria-hidden="true">
+          <img src="assets/images/icons/favicon_io/favicon-32x32.png" alt="">
+        </div>
         <a class="brand" href="index.html">UNSALT<span>D</span></a>
         <span class="brand-sub">Chef Marvin Jones</span>
       </div>
@@ -88,7 +96,7 @@
     <section class="section">
       <div class="container callout">
         <div>
-          <p class="eyebrow" style="color: rgba(255,255,255,0.7);">Partnerships</p>
+          <p class="eyebrow callout-eyebrow">Partnerships</p>
           <h2>Bring wellness-forward culinary programming to your brand.</h2>
           <p>We partner with wellness studios, hospitality groups, and lifestyle communities to create tailored experiences that reflect the UNSALT'D ethos.</p>
         </div>
